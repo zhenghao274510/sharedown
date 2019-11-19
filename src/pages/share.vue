@@ -2,7 +2,7 @@
   <div class="list" v-cloak>
     <img src="@/assets/img/3.png" alt class="img" />
     <span class="btn" @click="download">点击下载</span>
-    <down-zhi @click="show=false" :show="show"></down-zhi>
+    <down-zhi :show="show"></down-zhi>
   </div>
 </template>
 
@@ -20,9 +20,9 @@ export default {
   mounted() {
     var u = navigator.userAgent;
     var ua = navigator.userAgent.toLowerCase(); //获取判断用的对象
-    // var isAndroid = u.indexOf("Android") > -1 || u.indexOf("Adr") > -1; //android终端
-    // var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+    var isAndroid = u.indexOf("Android") > -1 || u.indexOf("Adr") > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    if (ua.match(/MicroMessenger/i) == "micromessenger"|| isiOS) {
       //   微信环境
       this.show = true;
     } else {
@@ -32,7 +32,7 @@ export default {
   methods: {
     download() {
 			let a = document.createElement("a");
-			// apk链接
+			// apk链接  修改
       a.href = "http://wx.yugong101.com/yugonghui.apk";
       a.click();
     }
